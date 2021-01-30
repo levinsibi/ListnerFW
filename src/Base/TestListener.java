@@ -57,7 +57,7 @@ public class TestListener implements ITestListener {
 		String screenShotName = testMethodName + dateFormat.format(date) + ".png";
 		
 		
-		EventFiringWebDriver efw= new EventFiringWebDriver(TestBase.getDriver());
+		EventFiringWebDriver efw= new EventFiringWebDriver(DriverFactory.getInstance().getDriver());
 		File src=efw.getScreenshotAs(OutputType.FILE);
 		try {
 			FileUtils.copyFile(src, new File("D:\\img\\"+screenShotName));

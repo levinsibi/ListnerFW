@@ -2,14 +2,19 @@ package Test;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import Base.DriverFactory;
+import Base.ExtentManager;
+import Base.ExtentTestManager;
+import Base.LocalDriverManager;
 import Base.TestBase;
 import Pages.BasePage;
 import Pages.SignInPage;
 
-public class SignInPageTest extends TestBase {
+public class SignInPageTest extends ExtentManager {
 
 	private WebDriver driver;
 	private SignInPage signInPage;
@@ -17,8 +22,8 @@ public class SignInPageTest extends TestBase {
 
 	@BeforeClass
 	public void setUp() {
-		//Get driver
-		driver = getDriver();
+		driver = DriverFactory.getInstance().getDriver();
+		driver.get("https://www.google.com/");
 	}
 
 	@Test
@@ -44,5 +49,12 @@ public class SignInPageTest extends TestBase {
 	@Test
 	public void SignInPageTestThree() {
 		System.out.println("Hey im in example test three");
+	}
+	@AfterClass
+	public void tearDown() {
+		extent.flush();
+		ExtentManager.getInstance().flush();
+		
+		DriverFactory.getInstance().removeDriver();
 	}
 }

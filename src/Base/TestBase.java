@@ -15,15 +15,13 @@ public class TestBase{
 	
 	private static WebDriver driver;
 	private static String driverPath = "D:\\driver\\";
-	protected static String reportFileName="";
-	public static WebDriver getDriver() {
-		return driver;
-	}
+	
+	
 
 	private void setDriver(String browserType, String appURL) {
 		switch (browserType) {
 		case "chrome":
-			driver = initChromeDriver(appURL);
+			 LocalDriverManager.getDriver().get(appURL);;
 			break;
 		case "firefox":
 			driver = initFirefoxDriver(appURL);
@@ -54,31 +52,33 @@ public class TestBase{
 	}
 
 	
-	@Parameters({ "browserType", "appURL" })
-	@BeforeClass
-	public void initializeTestBaseSetup(String browserType, String appURL) {
-		try {
-			setDriver(browserType, appURL);
-
-		} catch (Exception e) {
-			System.out.println("Error....." + e.getStackTrace());
-		}
-	}
-
-	
+//	@Parameters({ "browserType", "appURL" })
 //	@BeforeClass
-//	public void initializeTestBaseSetup() {
+//	public void initializeTestBaseSetup(String browserType, String appURL) {
 //		try {
-//			reportFileName= this.getClass().getName()+".html";
-//			setDriver("chrome", "https://www.google.com/");
+//			setDriver(browserType, appURL);
 //
 //		} catch (Exception e) {
 //			System.out.println("Error....." + e.getStackTrace());
 //		}
 //	}
-	@AfterClass
-	public void tearDown() {
-		
-		driver.quit();
+
+	
+//	@BeforeClass
+//	public void initializeTestBaseSetup() {
+//		try {
+//			ExtentManager.reportFileName= this.getClass().getName()+".html";
+//			System.out.println("My report name is +"+ExtentManager.reportFileName);
+//
+//		} catch (Exception e) {
+//			System.out.println("Error....." + e.getStackTrace());
+//		}
+//	}
+	@BeforeClass
+	public void TestBase1s() {
+	ExtentManager.reportFileName= this.getClass().getName()+".html";
+	System.out.println("My test base report name is +"+ExtentManager.reportFileName);
+	
 	}
+	
 }

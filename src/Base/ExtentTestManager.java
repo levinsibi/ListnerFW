@@ -15,7 +15,10 @@ public class ExtentTestManager {
 	}
 
 	public static synchronized void endTest() {
+	
 		extent.flush();
+		extent=null;
+		//ExtentManager.getInstance().flush();
 	}
 
 	public static synchronized ExtentTest startTest(String testName) {
@@ -23,4 +26,5 @@ public class ExtentTestManager {
 		extentTestMap.put((int) (long) (Thread.currentThread().getId()), test);
 		return test;
 	}
+	
 }

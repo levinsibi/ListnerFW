@@ -7,15 +7,21 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class ExtentManager{
-    private static ExtentReports extent;
-    protected static String reportFileName = "Test-Automaton-Report"+".html";
+public class ExtentManager extends TestBase{
+    protected static ExtentReports extent;
+  //  protected static String reportFileName = "Test-Automaton-Report"+".html";
+    protected static String reportFileName;
     private static String fileSeperator = System.getProperty("file.separator");
     private static String reportFilepath = System.getProperty("user.dir") +fileSeperator+ "TestReport";
-    private static String reportFileLocation =  reportFilepath +fileSeperator+ reportFileName;
+    private static String  	 reportFileLocation ;
+
+	
   
  
     public static ExtentReports getInstance() {
+    	 reportFileLocation =  reportFilepath +fileSeperator+ reportFileName;
+    	System.out.println("getinstance +"+reportFileName);
+   
         if (extent == null)
             createInstance();
         return extent;
@@ -24,7 +30,7 @@ public class ExtentManager{
     //Create an extent report instance
     public static ExtentReports createInstance() {
         String fileName = getReportPath(reportFilepath);
-       
+       System.out.println("extent file name "+reportFileName);
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
         htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
         htmlReporter.config().setChartVisibilityOnOpen(true);

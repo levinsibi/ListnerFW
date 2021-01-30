@@ -2,15 +2,20 @@ package Test;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import Base.DriverFactory;
+import Base.ExtentManager;
+import Base.ExtentTestManager;
+import Base.LocalDriverManager;
 import Base.TestBase;
 import Pages.BasePage;
 import Pages.CreateAccountPage;
 import Pages.SignInPage;
 
-public class CreateAccountTest extends TestBase {
+public class CreateAccountTest extends ExtentManager {
 	private WebDriver driver;
 	private SignInPage signInPage;
 	private BasePage basePage;
@@ -18,7 +23,8 @@ public class CreateAccountTest extends TestBase {
 
 	@BeforeClass
 	public void setUp() {
-		driver = getDriver();
+		driver = DriverFactory.getInstance().getDriver();
+		driver.get("https://www.google.com/");
 	}
 
 	@Test(priority=0)
@@ -41,5 +47,13 @@ public class CreateAccountTest extends TestBase {
 	
 	public void createAccountExample2() {
 		System.out.println("Hey im in Example2 test");
+	}
+	@AfterClass
+	public void tearDown() {
+		extent.flush();
+		
+		ExtentManager.getInstance().flush();
+		DriverFactory.getInstance().removeDriver();
+		
 	}
 }
