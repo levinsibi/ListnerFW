@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="methods">
+  <parameter name="appURL" value="https://google.com"/>
+  <parameter name="browserType" value="chrome"/>
+  <listeners>
+    <listener class-name="Base.TestListener"/>
+  </listeners>
+  <test thread-count="3" name="MyTest(failed)" parallel="methods">
+    <classes>
+      <class name="Test.BasePageTest">
+        <methods>
+          <include name="initializeTestBaseSetup"/>
+          <include name="setUp"/>
+          <include name="verifyHomePage"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- Test.BasePageTest -->
+      <class name="Test.SignInPageTest">
+        <methods>
+          <include name="initializeTestBaseSetup"/>
+          <include name="setUp"/>
+          <include name="verifySignInFunction"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- Test.SignInPageTest -->
+      <class name="Test.CreateAccountTest">
+        <methods>
+          <include name="verifyCreateAnAccountPage"/>
+          <include name="createAccountExample1"/>
+          <include name="setUp"/>
+          <include name="initializeTestBaseSetup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- Test.CreateAccountTest -->
+    </classes>
+  </test> <!-- MyTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->

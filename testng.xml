@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="methods" thread-count="3">
+	<listeners>
+		<listener class-name="Base.TestListener" />
+	</listeners>
+	<parameter name="browserType" value="chrome" />
+	<parameter name="appURL" value="https://google.com" />
+	<test name="MyTest">
+		<classes>
+
+			<class name="Test.BasePageTest" />
+			<class name="Test.SignInPageTest" />
+			<class name="Test.CreateAccountTest" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
